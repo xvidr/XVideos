@@ -1,46 +1,417 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>18+</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XVideos Access</title>
+
   <style>
-    * {
+    body, html {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
+      width: 100%;
       height: 100%;
-      background-color: #fff; /* Белый фон */
+      font-family: 'Arial', sans-serif;
+      background: url('bg_body.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      overflow-x: hidden;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
+      position: relative;
     }
 
-    a {
-      display: inline-block;
-      text-decoration: none;
-      outline: none;
+    .google-translate {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 5px 10px;
+      border-radius: 10px;
     }
 
-    a:focus, a:active {
-      outline: none;
+    .goog-te-combo {
+      background-color: #333;
+      color: #fff;
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: none;
     }
 
-    img {
-      width: 200px;
-      height: auto;
+    #container {
+      width: 90%;
+      max-width: 900px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+      text-align: center;
+      margin-top: 80px;
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    .sub-heading {
+      font-size: 18px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .info-text {
+      font-size: 18px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin: 15px 0;
+    }
+
+    .sub-info-text {
+      font-size: 20px;
+      color: #fff;
+      text-transform: uppercase;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .steps {
+      margin: 20px 0;
+      font-size: 16px;
+      color: #ddd;
+      line-height: 1.8;
+    }
+
+    .steps span.number {
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+      -webkit-background-clip: text;
+      color: transparent;
+      font-size: 18px;
+    }
+
+    .password-container {
+      margin: 30px 0;
+      text-align: center;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 18px;
+      width: 80%;
+      max-width: 400px;
+      background-color: #333;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .password-container button {
+      padding: 15px 40px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+      text-transform: uppercase;
+      border-radius: 8px;
+      border: none;
       cursor: pointer;
-      user-select: none;         /* Отключает выделение */
-      -webkit-user-drag: none;   /* Отключает перетаскивание в Safari */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    .password-container button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
+    }
+
+    .notification {
+      display: none;
+      color: #28a745;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .message {
+      display: none;
+      color: red;
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 20px 0;
+      cursor: pointer;
+    }
+
+    .access-info-text {
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-align: center;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    #cta-button {
+      padding: 15px 40px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+      text-transform: uppercase;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 20px;
+      align-self: center;
+    }
+
+    #cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .modal-content {
+      background: linear-gradient(45deg, #4e54c8, #8f94fb);
+      padding: 30px;
+      border-radius: 20px;
+      color: white;
+      text-align: center;
+      width: 60%;
+      max-width: 400px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      word-wrap: break-word;
+      animation: zoomIn 0.5s ease-in-out;
+    }
+
+    .modal-content p {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .close-btn {
+      background-color: #ff4500;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background-color: #ff6347;
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .video-player {
+      width: 100%;
+      margin: 0 0 30px 0;
+      border: 2px solid #444444;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+      cursor: pointer;
+      transition: none;
+    }
+
+    .video-player img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
     }
   </style>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,ru,de,fr,it,es,pt,nl,pl,sv,da,ms,ko,ja,zh-CN,zh-TW',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
+
 <body>
-  <a href="https://xsupers.github.io/XVideos">
-    <img src="18+.png" alt="18+">
-  </a>
+  <div id="google_translate_element" class="google-translate"></div>
+
+  <div id="container">
+    <div class="video-player" id="ai-bot-player">
+      <img src="ai_bot.png" alt="AI Bot" />
+    </div>
+
+    <div class="sub-heading">GET ACCESS TO 490,000+ VIDEOS IN VARIOUS CATEGORIES</div>
+
+    <div class="image-container">
+      <img src="ai_botfull.png" alt="AI Bot Full" id="ai-bot-full-image" />
+    </div>
+
+    <div class="info-text">Unlock access to the XVideos section in just 3 simple steps — it's quick!</div>
+    <div class="sub-info-text">No need to enter your personal data, we’ve done everything for you!</div>
+
+    <div class="steps">
+      <p><span class="number">1.</span> Enter date</p>
+      <p><span class="number">2.</span> Enter any username</p>
+      <p><span class="number">3.</span> Paste the received **********@****.com</p>
+    </div>
+
+    <div class="image-container">
+      <img src="ai_botlend.png" alt="AI Bot End" id="ai-bot-end-image" />
+    </div>
+
+    <div class="password-container">
+      <input type="text" id="password" readonly placeholder="****************" />
+      <br />
+      <button onclick="generatePassword()" id="generate-password">GET ADDRESS</button>
+      <button onclick="copyPassword()" id="copy-password">COPY ADDRESS</button>
+      <div class="notification" id="notification" data-text="Copied successfully!">Copied successfully!</div>
+    </div>
+
+    <div class="access-info-text">ACCESS WILL BE GRANTED AUTOMATICALLY</div>
+
+    <div id="message" class="message">
+      <p>Please get and copy the address first!</p>
+    </div>
+
+    <a href="https://prev.affomelody.com/click?pid=3749&offer_id=390&l=1649174243"
+       id="cta-button" target="_blank" rel="noopener noreferrer">GO! IT’S FAST AND FREE!</a>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <p>Full video available after unlocking</p>
+      <button class="close-btn" onclick="closeModal()">UNLOCK</button>
+    </div>
+  </div>
+
+  <script>
+    let emailGenerated = false;
+    let emailCopied = false;
+
+    const popularDomains = [
+      "gmail.com",
+      "yahoo.com",
+      "outlook.com",
+      "hotmail.com",
+      "aol.com",
+      "icloud.com",
+      "mail.com",
+      "protonmail.com",
+      "zoho.com"
+    ];
+
+    function generatePassword() {
+      const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+      const emailLength = Math.floor(Math.random() * 4) + 8;
+      let username = "";
+      for (let i = 0; i < emailLength; i++) {
+        username += chars[Math.floor(Math.random() * chars.length)];
+      }
+      const domain = popularDomains[Math.floor(Math.random() * popularDomains.length)];
+      const email = username + "@" + domain;
+      document.getElementById('password').value = email;
+      emailGenerated = true;
+      emailCopied = false;
+      document.getElementById('message').style.display = 'none';
+      document.getElementById('notification').style.display = 'none';
+    }
+
+    function copyPassword() {
+      const passwordInput = document.getElementById('password');
+      const message = document.getElementById('message');
+      const notification = document.getElementById('notification');
+
+      if (!passwordInput.value) {
+        message.style.display = 'block';
+        return;
+      }
+      message.style.display = 'none';
+
+      passwordInput.select();
+      passwordInput.setSelectionRange(0, 99999);
+
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          emailCopied = true;
+          // Показываем уведомление, не меняя текст
+          notification.style.display = 'block';
+          setTimeout(() => {
+            notification.style.display = 'none';
+          }, 2000);
+        } else {
+          alert('Copy failed. Please copy manually.');
+        }
+      } catch (err) {
+        alert('Your browser does not support copy function.');
+      }
+    }
+
+    document.getElementById('cta-button').addEventListener('click', function (event) {
+      if (!emailGenerated || !emailCopied) {
+        event.preventDefault();
+        document.getElementById('message').style.display = 'block';
+      } else {
+        document.getElementById('message').style.display = 'none';
+      }
+    });
+
+    document.getElementById('ai-bot-player').addEventListener('click', function () {
+      document.getElementById('modal').style.display = 'flex';
+    });
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
