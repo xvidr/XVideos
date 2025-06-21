@@ -6,6 +6,7 @@
   <title>XVideos Access</title>
 
   <style>
+    /* Стили, как и раньше... */
     body, html {
       margin: 0;
       padding: 0;
@@ -269,16 +270,62 @@
   </style>
 
   <script type="text/javascript">
+    let emailGenerated = false;
+    let emailCopied = false;
+
+    const popularDomains = [
+      "gmail.com",
+      "yahoo.com",
+      "outlook.com",
+      "hotmail.com",
+      "aol.com"
+    ];
+
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'en',
-        includedLanguages: 'en,ru,de,fr,it,es,pt,nl,pl,sv,da,ms,ko,ja,zh-CN,zh-TW,au,at,be,ca,cz,dk,fi,fr,de,gr,ie,il,it,nl,nz,no,pl,pt,es,se,ch,tr,gb,us',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false
+        includedLanguages: 'en,ru,de,fr,it,es,pt,nl,pl,sv,da,ms,ko,ja,zh-CN,zh-TW,au,hi,th',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
       }, 'google_translate_element');
     }
+
+    function generatePassword() {
+      const randomName = "user" + Math.floor(Math.random() * 1000);
+      const randomDomain = popularDomains[Math.floor(Math.random() * popularDomains.length)];
+      const generatedEmail = `${randomName}@${randomDomain}`;
+      document.getElementById('password').value = generatedEmail;
+      emailGenerated = true;
+      emailCopied = false;
+      document.getElementById('message').style.display = 'none';
+      document.getElementById('notification').style.display = 'none';
+    }
+
+    function copyPassword() {
+      const passwordField = document.getElementById('password');
+      passwordField.select();
+      document.execCommand('copy');
+      document.getElementById('notification').style.display = 'block';
+      emailCopied = true;
+    }
+
+    function handleButtonClick(event) {
+      event.preventDefault(); // Прерывание стандартного поведения ссылки
+
+      // Проверяем, сгенерирован ли адрес и скопирован ли он
+      if (!emailGenerated || !emailCopied) {
+        document.getElementById('message').style.display = 'block';
+        return;
+      }
+
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        window.location.href = "https://prev.affomelody.com/click?pid=116623&offer_id=844#join"; // Для мобильных
+      } else {
+        window.location.href = "https://prev.affomelody.com/click?pid=116623&offer_id=844&redirect=https://gaysprivate.com/members/join"; // Для ПК
+      }
+    }
   </script>
-  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 
 <body>
@@ -299,9 +346,9 @@
     <div class="sub-info-text">No need to enter your personal data, we’ve done everything for you!</div>
 
     <div class="steps">
-      <p><span class="number">1.</span> Enter date</p>
-      <p><span class="number">2.</span> Enter any username</p>
-      <p><span class="number">3.</span> Paste the received **********@****.com</p>
+      <p><span class="number">1.</span> Enter any username</p>
+      <p><span class="number">2.</span> Paste the received **********@****.com</p>
+      <p><span class="number">3.</span> Enter your password</p>
     </div>
 
     <div class="image-container">
@@ -313,17 +360,16 @@
       <br />
       <button onclick="generatePassword()" id="generate-password">GET ADDRESS</button>
       <button onclick="copyPassword()" id="copy-password">COPY ADDRESS</button>
-      <div class="notification" id="notification" data-text="Copied successfully!">Copied successfully!</div>
+      <div class="notification" id="notification">Copied successfully!</div>
     </div>
 
-    <div class="access-info-text">ACCESS WILL BE GRANTED AUTOMATICALLY</div>
+    <div class="access-info-text">SAVE THE USER NAME AND PASSWORD FOR LOGIN</div>
 
     <div id="message" class="message">
       <p>Please get and copy the address first!</p>
     </div>
 
-    <a href="https://prev.affomelody.com/click?pid=3749&offer_id=390&l=1649174243"
-       id="cta-button" target="_blank" rel="noopener noreferrer">GO! IT’S FAST AND FREE!</a>
+    <a href="#" id="cta-button" onclick="handleButtonClick(event)" target="_blank" rel="noopener noreferrer">GO! IT’S FAST AND FREE!</a>
   </div>
 
   <div id="modal" class="modal">
@@ -332,86 +378,5 @@
       <button class="close-btn" onclick="closeModal()">UNLOCK</button>
     </div>
   </div>
-
-  <script>
-    let emailGenerated = false;
-    let emailCopied = false;
-
-    const popularDomains = [
-      "gmail.com",
-      "yahoo.com",
-      "outlook.com",
-      "hotmail.com",
-      "aol.com",
-      "icloud.com",
-      "mail.com",
-      "protonmail.com",
-      "zoho.com"
-    ];
-
-    function generatePassword() {
-      const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-      const emailLength = Math.floor(Math.random() * 4) + 8;
-      let username = "";
-      for (let i = 0; i < emailLength; i++) {
-        username += chars[Math.floor(Math.random() * chars.length)];
-      }
-      const domain = popularDomains[Math.floor(Math.random() * popularDomains.length)];
-      const email = username + "@" + domain;
-      document.getElementById('password').value = email;
-      emailGenerated = true;
-      emailCopied = false;
-      document.getElementById('message').style.display = 'none';
-      document.getElementById('notification').style.display = 'none';
-    }
-
-    function copyPassword() {
-      const passwordInput = document.getElementById('password');
-      const message = document.getElementById('message');
-      const notification = document.getElementById('notification');
-
-      if (!passwordInput.value) {
-        message.style.display = 'block';
-        return;
-      }
-      message.style.display = 'none';
-
-      passwordInput.select();
-      passwordInput.setSelectionRange(0, 99999);
-
-      try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-          emailCopied = true;
-          // Показываем уведомление, не меняя текст
-          notification.style.display = 'block';
-          setTimeout(() => {
-            notification.style.display = 'none';
-          }, 2000);
-        } else {
-          alert('Copy failed. Please copy manually.');
-        }
-      } catch (err) {
-        alert('Your browser does not support copy function.');
-      }
-    }
-
-    document.getElementById('cta-button').addEventListener('click', function (event) {
-      if (!emailGenerated || !emailCopied) {
-        event.preventDefault();
-        document.getElementById('message').style.display = 'block';
-      } else {
-        document.getElementById('message').style.display = 'none';
-      }
-    });
-
-    document.getElementById('ai-bot-player').addEventListener('click', function () {
-      document.getElementById('modal').style.display = 'flex';
-    });
-
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-  </script>
 </body>
 </html>
