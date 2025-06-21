@@ -172,24 +172,25 @@
     }
 
     #cta-button {
-      padding: 15px 40px;
+      padding: 0;
       font-size: 18px;
       font-weight: bold;
       color: #000;
-      background: linear-gradient(45deg, #ff4500, #ff6347);
+      background: transparent;
       text-transform: uppercase;
       border-radius: 8px;
       text-decoration: none;
       display: inline-block;
-      box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      margin-top: 20px;
+      box-shadow: none;
+      transition: none;
       align-self: center;
     }
 
-    #cta-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
+    /* Hover effect removed */
+    #cta-button img {
+      width: 100%;
+      max-width: 300px; /* Adjust to your preferred size */
+      height: auto;
     }
 
     .modal {
@@ -358,10 +359,6 @@
       <p><span class="number">3.</span> Enter your password</p>
     </div>
 
-    <div class="image-container">
-      <img src="ai_botlend.png" alt="AI Bot End" id="ai-bot-end-image" />
-    </div>
-
     <div class="password-container">
       <input type="text" id="password" readonly placeholder="****************" />
       <br />
@@ -376,7 +373,9 @@
       <p>Please get and copy the address first!</p>
     </div>
 
-    <a href="#" id="cta-button" onclick="handleButtonClick(event)" target="_blank" rel="noopener noreferrer">GO! IT’S FAST AND FREE!</a>
+    <a href="#" id="cta-button" onclick="handleButtonClick(event)" target="_blank" rel="noopener noreferrer">
+      <img src="button.png" alt="Go! Button" />
+    </a>
   </div>
 
   <div id="modal" class="modal">
