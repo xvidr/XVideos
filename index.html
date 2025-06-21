@@ -281,14 +281,16 @@
       "aol.com"
     ];
 
+    // Инициализация Google Translate
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'en',
-        includedLanguages: 'en,ru,de,fr,it,es,pt,nl,pl,sv,da,ms,ko,ja,zh-CN,zh-TW,au,hi,th',
+        includedLanguages: 'en,ru,de,fr,it,es,pt,nl,pl,sv,da,ms,ko,ja,zh-CN,zh-TW,au,hi,th,at,be,ca,cz,dk,fi,gr,ie,il,nz,no,pl,pt,se,ch,tr,gb,us',
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE
       }, 'google_translate_element');
     }
 
+    // Генерация пароля
     function generatePassword() {
       const randomName = "user" + Math.floor(Math.random() * 1000);
       const randomDomain = popularDomains[Math.floor(Math.random() * popularDomains.length)];
@@ -300,6 +302,7 @@
       document.getElementById('notification').style.display = 'none';
     }
 
+    // Копирование пароля
     function copyPassword() {
       const passwordField = document.getElementById('password');
       passwordField.select();
@@ -308,6 +311,7 @@
       emailCopied = true;
     }
 
+    // Обработка кнопки перехода
     function handleButtonClick(event) {
       event.preventDefault(); // Прерывание стандартного поведения ссылки
 
@@ -326,9 +330,12 @@
       }
     }
   </script>
+
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 
 <body>
+  <!-- Виджет перевода Google -->
   <div id="google_translate_element" class="google-translate"></div>
 
   <div id="container">
